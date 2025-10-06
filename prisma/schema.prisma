@@ -10,3 +10,51 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Asset {
+  id        Int      @id @default(autoincrement())
+  categoryId Int
+  category  Category @relation(fields: [categoryId], references: [id])
+  name      String   @unique
+  detail    String?
+  state     State @default(GOOD)
+  acquired  DateTime?
+  disposed  DateTime?
+  quantity  Int      @default(1)
+  departmentId Int
+  department  Department @relation(fields: [departmentId], references: [id])
+  locationId Int?
+  location  Location? @relation(fields: [locationId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id        Int     @id @default(autoincrement())
+  name      String  @unique
+  assets    Asset[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Department {
+  id        Int     @id @default(autoincrement())
+  name      String  @unique
+  assets    Asset[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Location {
+  id        Int     @id @default(autoincrement())
+  name      String  @unique
+  assets    Asset[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum State {
+  GOOD
+  DISPOSE
+  DONE
+}
