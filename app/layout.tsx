@@ -33,7 +33,7 @@ export default function RootLayout({
           <Nav />
           <div className="flex-1">
             <AuthBar />
-            {children}
+            <div className="p-5">{children}</div>
           </div>
         </div>
       </body>
