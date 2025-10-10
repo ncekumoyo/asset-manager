@@ -12,7 +12,7 @@ const Button = ({ label, type, className, onClick }: Button) => {
     <button
       type={type}
       onClick={onClick}
-      className={`px-3 py-2 font-bold rounded-md max-w-[200px] ${className}`}
+      className={`px-3 py-2 font-bold rounded-md w-[200px] ${className}`}
     >
       {label}
     </button>

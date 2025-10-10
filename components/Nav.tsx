@@ -9,7 +9,7 @@ import {
 
 const Nav = () => {
   return (
-    <div className="flex flex-col gap-1 text-slate-100 h-full bg-gray-100 w-[300px]">
+    <div className="flex flex-col gap-1 text-slate-100 h-full bg-gray-100 w-[200px]">
       <div className="flex  items-center justify-center p-5 font-bold text-xl bg-blue-950 h-[150px]">
         ASSET MANAGER
       </div>

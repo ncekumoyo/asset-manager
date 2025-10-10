@@ -13,16 +13,16 @@ datasource db {
 
 model Asset {
   id        Int      @id @default(autoincrement())
-  categoryId Int
-  category  Category @relation(fields: [categoryId], references: [id])
   name      String   @unique
   detail    String?
   state     State @default(GOOD)
   acquired  DateTime?
   disposed  DateTime?
   quantity  Int      @default(1)
-  departmentId Int
-  department  Department @relation(fields: [departmentId], references: [id])
+  categoryId Int?
+  category  Category? @relation(fields: [categoryId], references: [id])
+  departmentId Int?
+  department  Department? @relation(fields: [departmentId], references: [id])
   locationId Int?
   location  Location? @relation(fields: [locationId], references: [id])
   createdAt DateTime @default(now())
