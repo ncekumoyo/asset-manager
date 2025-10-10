@@ -6,6 +6,7 @@ import {
   FaLayerGroup,
   FaMapLocation,
 } from "react-icons/fa6";
+import { IoSwapHorizontal } from "react-icons/io5";
 
 const Nav = () => {
   return (
@@ -18,6 +19,7 @@ const Nav = () => {
         <NavLink title="Departments" href="/departments" icon={FaBuilding} />
         <NavLink title="Locations" href="/locations" icon={FaMapLocation} />
         <NavLink title="Categories" href="/categories" icon={FaLayerGroup} />
+        <NavLink title="Transfers" href="/transfers" icon={IoSwapHorizontal} />
       </div>
       <div className="bg-blue-950 p-5 text-xs font-bold">
         &copy;2025 Sintusoft Technologies
