@@ -25,6 +25,7 @@ model Asset {
   department  Department? @relation(fields: [departmentId], references: [id])
   locationId Int?
   location  Location? @relation(fields: [locationId], references: [id])
+  transfers Transfer[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -57,4 +58,18 @@ enum State {
   GOOD
   DISPOSE
   DONE
+}
+
+model Transfer {
+  id        Int @id @default(autoincrement())
+  assetId Int
+  asset Asset @relation(fields: [assetId], references: [id])
+  fromCategory String?
+  toCategory String?
+  fromDepartment String?
+  toDepartment String?
+  fromLocation String?
+  toLocation String?
+  reason String
+  createdAt DateTime @default(now())
 }

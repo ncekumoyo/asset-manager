@@ -29,3 +29,19 @@ export async function getLocations() {
   });
   return locations;
 }
+
+export async function getTransfersByAsset(id: number) {
+  const transfers = await prisma.transfer.findMany({ where: { id } });
+  return transfers;
+}
+
+export async function getAsset(id: number) {
+  const asset = await prisma.asset.findUnique({
+    where: { id },
+    include: {
+      department: { select: { id: true, name: true } },
+      location: { select: { id: true, name: true } },
+    },
+  });
+  return asset;
+}

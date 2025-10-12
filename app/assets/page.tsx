@@ -4,6 +4,7 @@ import React from "react";
 import { prisma } from "@/lib/prisma";
 import { FaPencil, FaX } from "react-icons/fa6";
 import LinkButton from "@/components/LinkButton ";
+import { IoSwapHorizontal } from "react-icons/io5";
 
 async function getAssets() {
   const assets = await prisma.asset.findMany({
@@ -71,6 +72,12 @@ const Assets = async () => {
                     className="text-red-400 hover:text-red-500"
                   >
                     <FaX size={18} />
+                  </Link>
+                  <Link
+                    href={`assets/${item?.id}/transfer`}
+                    className="text-green-700 hover:text-green-600"
+                  >
+                    <IoSwapHorizontal size={18} />
                   </Link>
                 </div>
               </td>
