@@ -45,3 +45,28 @@ export async function getAsset(id: number) {
   });
   return asset;
 }
+
+export async function getAssetCount() {
+  const count = await prisma.asset.count();
+  return count;
+}
+
+export async function getDepartmentCount() {
+  const count = await prisma.department.count();
+  return count;
+}
+
+export async function getLocationCount() {
+  const count = await prisma.location.count();
+  return count;
+}
+
+export async function getCategoryCount() {
+  const count = await prisma.category.count();
+  return count;
+}
+
+export async function getTransferCount() {
+  const count = await prisma.transfer.count();
+  return count;
+}

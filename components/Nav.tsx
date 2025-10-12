@@ -2,6 +2,7 @@ import React from "react";
 import NavLink from "./NavLink";
 import {
   FaBuilding,
+  FaChartLine,
   FaClipboardCheck,
   FaLayerGroup,
   FaMapLocation,
@@ -15,11 +16,12 @@ const Nav = () => {
         ASSET MANAGER
       </div>
       <div className="flex flex-col gap-1 flex-1 overflow-y-scroll">
+        <NavLink title="Dashboard" href="/" icon={FaChartLine} />
         <NavLink title="Assets" href="/assets" icon={FaClipboardCheck} />
+        <NavLink title="Transfers" href="/transfers" icon={IoSwapHorizontal} />
         <NavLink title="Departments" href="/departments" icon={FaBuilding} />
         <NavLink title="Locations" href="/locations" icon={FaMapLocation} />
         <NavLink title="Categories" href="/categories" icon={FaLayerGroup} />
-        <NavLink title="Transfers" href="/transfers" icon={IoSwapHorizontal} />
       </div>
       <div className="bg-blue-950 p-5 text-xs font-bold">
         &copy;2025 Sintusoft Technologies

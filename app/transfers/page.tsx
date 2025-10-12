@@ -26,23 +26,23 @@ const Transfers = async () => {
   return (
     <div className="flex flex-col gap-5">
       <PageTitle title="Transfers" />
-      <table className="table-auto border">
+      <table className="table-auto rounded-t-md overflow-hidden">
         <thead>
-          <tr className="border bg-gray-200">
-            <th className="px-2 py-1 text-start">Date</th>
-            <th className="px-2 py-1 text-start">Asset</th>
-            <th className="px-2 py-1 text-start">Reason</th>
-            <th className="px-2 py-1 text-start">From Department</th>
-            <th className="px-2 py-1 text-start">To Department</th>
-            <th className="px-2 py-1 text-start">From Location</th>
-            <th className="px-2 py-1 text-start">To Location</th>
+          <tr className="bg-blue-100">
+            <th className="p-2 text-start">Date</th>
+            <th className="p-2 text-start">Asset</th>
+            <th className="p-2 text-start">Reason</th>
+            <th className="p-2 text-start">From Department</th>
+            <th className="p-2 text-start">To Department</th>
+            <th className="p-2 text-start">From Location</th>
+            <th className="p-2 text-start">To Location</th>
           </tr>
         </thead>
         <tbody>
           {transfers?.map((item, index) => (
-            <tr key={index} className="border">
+            <tr key={index} className="border-b border-blue-200">
               <td className="py-1 px-2">
-                {item?.createdAt.toLocaleDateString()}
+                {item?.createdAt.toLocaleDateString("en-GB")}
               </td>
               <td className="py-1 px-2">{item?.asset?.name}</td>
               <td className="py-1 px-2">{item?.reason}</td>

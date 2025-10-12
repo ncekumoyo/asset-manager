@@ -19,8 +19,6 @@ const EditAsset = async ({ params }: { params: { id: string } }) => {
   const id = Number(params.id);
   const currentAsset = await getAsset(id);
 
-  const locations = await getLocations();
-  const departments = await getDepartments();
   const categories = await getCategories();
 
   async function updateAsset(formData: FormData) {
@@ -34,10 +32,6 @@ const EditAsset = async ({ params }: { params: { id: string } }) => {
     const quantity = Number(formData.get("quantity") as string);
     const cat = formData.get("category") as string;
     const categoryId = cat ? Number(cat) : null;
-    const dep = formData.get("department") as string;
-    const departmentId = dep ? Number(dep) : null;
-    const loc = formData.get("location") as string;
-    const locationId = loc ? Number(loc) : null;
 
     await prisma.asset.update({
       where: { id },
@@ -48,8 +42,8 @@ const EditAsset = async ({ params }: { params: { id: string } }) => {
         disposed: disposed ?? null,
         quantity,
         categoryId,
-        departmentId,
-        locationId,
+        departmentId: undefined,
+        locationId: undefined,
       },
     });
     revalidatePath("/assets");
@@ -97,31 +91,19 @@ const EditAsset = async ({ params }: { params: { id: string } }) => {
             />
           </div>
 
-          <TextInput
-            label="Quantity"
-            type="number"
-            name="quantity"
-            defaultValue={currentAsset?.quantity}
-            className="w-[400px]"
-          />
           <div className="flex gap-5 flex-wrap">
+            <TextInput
+              label="Quantity"
+              type="number"
+              name="quantity"
+              defaultValue={currentAsset?.quantity}
+              className="w-[400px]"
+            />
             <Select
               label="Category"
               name="category"
               options={categories}
               defaultValue={currentAsset?.categoryId?.toString()}
-            />
-            <Select
-              label="Department"
-              name="department"
-              options={departments}
-              defaultValue={currentAsset?.departmentId?.toString()}
-            />
-            <Select
-              label="Location"
-              name="location"
-              options={locations}
-              defaultValue={currentAsset?.locationId?.toString()}
             />
           </div>
 

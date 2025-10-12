@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
-import AuthBar from "@/components/AuthBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,9 +30,8 @@ export default function RootLayout({
       >
         <div className="flex h-screen">
           <Nav />
-          <div className="flex-1">
-            <AuthBar />
-            <div className="p-5">{children}</div>
+          <div className="flex-1 flex flex-col h-screen">
+            <div className="p-5 flex-1 overflow-y-scroll">{children}</div>
           </div>
         </div>
       </body>
