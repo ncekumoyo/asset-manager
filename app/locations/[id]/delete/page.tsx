@@ -22,7 +22,7 @@ const DeleteLocation = async ({ params }: { params: { id: string } }) => {
     redirect("/locations");
   }
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 p-5">
       <PageTitle title={`Delete: ${currentLocation?.name}`} />
       <form action={deleteLocation}>
         <div className="flex flex-col gap-5 justify-center p-10">

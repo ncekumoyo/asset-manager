@@ -30,7 +30,7 @@ const EditDepartment = async ({ params }: { params: { id: string } }) => {
     redirect("/departments");
   }
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 p-5">
       <PageTitle title="Edit Department" />
       <form action={updateDepartment}>
         <div className="flex flex-col gap-5">

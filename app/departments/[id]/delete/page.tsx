@@ -22,7 +22,7 @@ const DeleteDepartment = async ({ params }: { params: { id: string } }) => {
     redirect("/departments");
   }
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 p-5">
       <PageTitle title={`Delete: ${currentDepartment?.name}`} />
       <form action={deleteDepartment}>
         <div className="flex flex-col gap-5 justify-center p-10">

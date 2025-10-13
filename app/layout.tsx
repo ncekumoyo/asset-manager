@@ -28,11 +28,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex h-screen">
+        <div className="flex h-screen overflow-y-scroll">
           <Nav />
-          <div className="flex-1 flex flex-col h-screen">
-            <div className="p-5 flex-1 overflow-y-scroll">{children}</div>
-          </div>
+          {children}
         </div>
       </body>
     </html>

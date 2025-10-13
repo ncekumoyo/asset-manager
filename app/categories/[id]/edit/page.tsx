@@ -30,7 +30,7 @@ const EditCategory = async ({ params }: { params: { id: string } }) => {
     redirect("/categories");
   }
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 p-5">
       <PageTitle title="Edit Category" />
       <form action={updateCategory}>
         <div className="flex flex-col gap-5">

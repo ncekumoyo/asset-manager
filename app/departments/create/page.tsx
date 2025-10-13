@@ -20,7 +20,7 @@ const CreateDepartment = () => {
 
   return (
     <form action={createDepartment}>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 p-5">
         <h2 className="font-bold text-lg">Add Department</h2>
         <TextInput
           label="Department Name"

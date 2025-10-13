@@ -22,7 +22,7 @@ const DeleteAsset = async ({ params }: { params: { id: string } }) => {
     redirect("/assets");
   }
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 p-5">
       <PageTitle title={`Delete: ${currentAsset?.name}`} />
       <form action={deleteAsset}>
         <div className="flex flex-col gap-5 justify-center p-10">

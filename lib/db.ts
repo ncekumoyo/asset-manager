@@ -46,6 +46,74 @@ export async function getAsset(id: number) {
   return asset;
 }
 
+export async function getAssetsByPage(page: number, limit: number) {
+  const assets = await prisma.asset.findMany({
+    orderBy: {
+      name: "asc",
+    },
+    include: {
+      category: true,
+      department: true,
+      location: true,
+    },
+    skip: (page - 1) * limit,
+    take: limit,
+  });
+  return assets;
+}
+
+export async function getLocationsByPage(page: number, limit: number) {
+  const locations = await prisma.location.findMany({
+    orderBy: {
+      name: "asc",
+    },
+    skip: (page - 1) * limit,
+    take: limit,
+  });
+  return locations;
+}
+
+export async function getDepartmentsByPage(page: number, limit: number) {
+  const departments = await prisma.department.findMany({
+    orderBy: {
+      name: "asc",
+    },
+    skip: (page - 1) * limit,
+    take: limit,
+  });
+  return departments;
+}
+
+export async function getCategoriesByPage(page: number, limit: number) {
+  const categories = await prisma.category.findMany({
+    orderBy: {
+      name: "asc",
+    },
+    skip: (page - 1) * limit,
+    take: limit,
+  });
+  return categories;
+}
+
+export async function getTransfersByPage(page: number, limit: number) {
+  const transfers = await prisma.transfer.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: {
+      asset: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
+    skip: (page - 1) * limit,
+    take: limit,
+  });
+  return transfers;
+}
+
 export async function getAssetCount() {
   const count = await prisma.asset.count();
   return count;

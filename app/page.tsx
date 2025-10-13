@@ -18,7 +18,7 @@ export default async function Home() {
   const categoryCount = await getCategoryCount();
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 p-5 h-full w-full">
       <PageTitle title="Dashboard" />
       <div className="flex gap-10 flex-wrap">
         <CountCard title="Assets" count={assetCount} href="/assets" />

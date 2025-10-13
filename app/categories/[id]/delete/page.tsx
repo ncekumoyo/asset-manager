@@ -22,7 +22,7 @@ const DeleteCategory = async ({ params }: { params: { id: string } }) => {
     redirect("/categories");
   }
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 p-5">
       <PageTitle title={`Delete: ${currentCategory?.name}`} />
       <form action={deleteCategory}>
         <div className="flex flex-col gap-5 justify-center p-10">

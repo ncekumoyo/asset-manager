@@ -20,7 +20,7 @@ const CreateLocation = () => {
 
   return (
     <form action={createLocation}>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 p-5">
         <h2 className="font-bold text-lg">Add Location</h2>
         <TextInput
           label="Location Name"

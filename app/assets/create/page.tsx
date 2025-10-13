@@ -46,7 +46,7 @@ const CreateAsset = async () => {
 
   return (
     <form action={createAsset}>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 p-5">
         <h2 className="font-bold text-lg">Add Asset</h2>
         <div className="flex gap-5 flex-wrap">
           <TextInput

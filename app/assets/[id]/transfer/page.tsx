@@ -65,7 +65,7 @@ const MakeTransfer = async ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 p-5">
       <PageTitle title="Transfer Asset" />
       <form action={transferAsset}>
         <div className="flex flex-col gap-5">

@@ -8,7 +8,7 @@ const TransfersByAsset = async ({ params }: { params: { id: string } }) => {
   const currentAsset = await getAsset(id);
   const transfers = await getTransfersByAsset(id);
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 p-5">
       <PageTitle title={`Transfers: ${currentAsset?.name}`} />
       <LinkButton
         href={`/assets/${id}/transfers/transfer`}
