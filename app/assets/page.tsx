@@ -7,18 +7,27 @@ import LinkButton from "@/components/LinkButton ";
 import { IoSwapHorizontal } from "react-icons/io5";
 import { getAssetCount, getAssetsByPage } from "@/lib/db";
 import Pagination from "@/components/Pagination";
+import Search from "@/components/Search";
+import { redirect } from "next/navigation";
 
 const Assets = async ({
   searchParams,
 }: {
-  searchParams: { page?: string; limit?: string };
+  searchParams: { page?: string; limit?: string; s?: string };
 }) => {
   const sp = await searchParams;
   const page = Number(sp?.page ?? 1);
   const limit = Number(sp?.limit ?? 20);
+  const searchTerm = sp?.s ?? "";
 
-  const assets = await getAssetsByPage(page, limit);
-  const assetCount = await getAssetCount();
+  const assets = await getAssetsByPage(page, limit, searchTerm);
+  const assetCount = await getAssetCount(searchTerm);
+
+  async function SearchContaining(formData: FormData) {
+    "use server";
+    const searchTerm = formData.get("search") as string;
+    redirect(`/assets?page=1&limit=20&s=${searchTerm}`);
+  }
 
   return (
     <div className="flex flex-col gap-5 h-full w-full px-5 pt-5">
@@ -28,6 +37,7 @@ const Assets = async ({
         className="bg-red-400 text-slate-100"
         label={"Add"}
       />
+      <Search action={SearchContaining} defaultValue={searchTerm ?? ""} />
       <div className="w-full overflow-y-scroll">
         <table className="w-full rounded-t-md overflow-hidden">
           <thead>
@@ -85,7 +95,13 @@ const Assets = async ({
           </tbody>
         </table>
       </div>
-      <Pagination href="/assets" page={page} limit={limit} count={assetCount} />
+      <Pagination
+        href="/assets"
+        page={page}
+        limit={limit}
+        count={assetCount}
+        searchTerm={searchTerm}
+      />
     </div>
   );
 };

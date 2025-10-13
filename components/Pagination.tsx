@@ -8,9 +8,10 @@ type Pagination = {
   page: number;
   limit: number;
   count: number;
+  searchTerm?: string;
 };
 
-const Pagination = ({ href, page, limit, count }: Pagination) => {
+const Pagination = ({ href, page, limit, count, searchTerm }: Pagination) => {
   const [isLeftVisible, SetIsLeftVisible] = useState(false);
   const [isRightVisible, SetIsRightVisible] = useState(false);
 
@@ -32,7 +33,7 @@ const Pagination = ({ href, page, limit, count }: Pagination) => {
   return (
     <div className="bg-gray-200 p-3 flex gap-1 justify-center font-bold">
       <Link
-        href={`${href}?page=${page - 1}&limit=${limit}`}
+        href={`${href}?page=${page - 1}&limit=${limit}&s=${searchTerm ?? ""}`}
         className={`${isLeftVisible ? "" : "hidden"}`}
       >
         <div className="bg-blue-950 text-slate-100 rounded-md w-[50px] h-[50px] flex justify-center items-center">
@@ -44,7 +45,7 @@ const Pagination = ({ href, page, limit, count }: Pagination) => {
       </div>
 
       <Link
-        href={`${href}?page=${page + 1}&limit=${limit}`}
+        href={`${href}?page=${page + 1}&limit=${limit}&s=${searchTerm ?? ""}`}
         className={`${isRightVisible ? "" : "hidden"}`}
       >
         <div className="bg-blue-950 text-slate-100 rounded-md w-[50px] h-[50px] flex justify-center items-center">

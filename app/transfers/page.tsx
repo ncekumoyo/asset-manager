@@ -5,6 +5,8 @@ import { prisma } from "@/lib/prisma";
 import LinkButton from "@/components/LinkButton ";
 import Pagination from "@/components/Pagination";
 import { getTransferCount, getTransfersByPage } from "@/lib/db";
+import { redirect } from "next/navigation";
+import Search from "@/components/Search";
 
 async function getTransfers() {
   const transfers = await prisma.transfer.findMany({
@@ -26,17 +28,26 @@ async function getTransfers() {
 const Transfers = async ({
   searchParams,
 }: {
-  searchParams: { page?: string; limit?: string };
+  searchParams: { page?: string; limit?: string; s?: string };
 }) => {
   const sp = await searchParams;
   const page = Number(sp?.page ?? 1);
   const limit = Number(sp?.limit ?? 20);
+  const searchTerm = sp?.s ?? "";
 
-  const transfers = await getTransfersByPage(page, limit);
-  const transferCount = await getTransferCount();
+  const transfers = await getTransfersByPage(page, limit, searchTerm);
+  const transferCount = await getTransferCount(searchTerm);
+
+  async function SearchContaining(formData: FormData) {
+    "use server";
+    const searchTerm = formData.get("search") as string;
+    redirect(`/transfers?page=1&limit=20&s=${searchTerm}`);
+  }
+
   return (
-    <div className="flex flex-col gap-5 px-3 pt-5 h-full">
+    <div className="flex flex-col gap-5 px-3 pt-5 h-full w-full">
       <PageTitle title="Transfers" />
+      <Search action={SearchContaining} defaultValue={searchTerm ?? ""} />
       <div className="w-full overflow-y-scroll">
         <table className="w-full rounded-t-md overflow-hidden">
           <thead>
@@ -72,6 +83,7 @@ const Transfers = async ({
         page={page}
         limit={limit}
         count={transferCount}
+        searchTerm={searchTerm}
       />
     </div>
   );

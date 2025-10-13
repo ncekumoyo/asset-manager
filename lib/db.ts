@@ -46,8 +46,26 @@ export async function getAsset(id: number) {
   return asset;
 }
 
-export async function getAssetsByPage(page: number, limit: number) {
+export async function getAssetsByPage(
+  page: number,
+  limit: number,
+  searchTerm: string
+) {
   const assets = await prisma.asset.findMany({
+    where: {
+      OR: [
+        {
+          name: {
+            contains: searchTerm,
+          },
+        },
+        {
+          detail: {
+            contains: searchTerm,
+          },
+        },
+      ],
+    },
     orderBy: {
       name: "asc",
     },
@@ -95,8 +113,48 @@ export async function getCategoriesByPage(page: number, limit: number) {
   return categories;
 }
 
-export async function getTransfersByPage(page: number, limit: number) {
+export async function getTransfersByPage(
+  page: number,
+  limit: number,
+  searchTerm: string
+) {
   const transfers = await prisma.transfer.findMany({
+    where: {
+      OR: [
+        {
+          asset: {
+            name: {
+              contains: searchTerm,
+            },
+          },
+        },
+        {
+          reason: {
+            contains: searchTerm,
+          },
+        },
+        {
+          fromDepartment: {
+            contains: searchTerm,
+          },
+        },
+        {
+          toDepartment: {
+            contains: searchTerm,
+          },
+        },
+        {
+          fromLocation: {
+            contains: searchTerm,
+          },
+        },
+        {
+          toLocation: {
+            contains: searchTerm,
+          },
+        },
+      ],
+    },
     orderBy: {
       createdAt: "desc",
     },
@@ -114,8 +172,17 @@ export async function getTransfersByPage(page: number, limit: number) {
   return transfers;
 }
 
-export async function getAssetCount() {
-  const count = await prisma.asset.count();
+export async function getAssetCount(searchTerm: string) {
+  const count = await prisma.asset.count({
+    where: {
+      OR: [
+        {
+          name: { contains: searchTerm },
+        },
+        { detail: { contains: searchTerm } },
+      ],
+    },
+  });
   return count;
 }
 
@@ -134,7 +201,20 @@ export async function getCategoryCount() {
   return count;
 }
 
-export async function getTransferCount() {
-  const count = await prisma.transfer.count();
+export async function getTransferCount(searchTerm: string) {
+  const count = await prisma.transfer.count({
+    where: {
+      OR: [
+        {
+          asset: { name: { contains: searchTerm } },
+        },
+        { reason: { contains: searchTerm } },
+        { fromDepartment: { contains: searchTerm } },
+        { toDepartment: { contains: searchTerm } },
+        { fromLocation: { contains: searchTerm } },
+        { toLocation: { contains: searchTerm } },
+      ],
+    },
+  });
   return count;
 }
