@@ -172,7 +172,7 @@ export async function getTransfersByPage(
   return transfers;
 }
 
-export async function getAssetCount(searchTerm: string) {
+export async function getAssetCount(searchTerm: string = "") {
   const count = await prisma.asset.count({
     where: {
       OR: [
@@ -201,7 +201,7 @@ export async function getCategoryCount() {
   return count;
 }
 
-export async function getTransferCount(searchTerm: string) {
+export async function getTransferCount(searchTerm: string = "") {
   const count = await prisma.transfer.count({
     where: {
       OR: [
